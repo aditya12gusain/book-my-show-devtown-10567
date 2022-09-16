@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import { FaCcVisa, FaCcApplePay } from "react-icons/fa";
 import PosterSlider from "../components/PosterSlider/PosterSlider.Component";
 import MovieHero from "../components/MovieHero/MovieHero.Component";
+import Cast from "../components/Cast/Cast.Component";
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -53,7 +54,37 @@ const MoviePage = () => {
     requestMovie();
   }, [id]);
 
-  const settingCast = {};
+  const settingCast = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   const settings = {
     infinite: false,
@@ -140,6 +171,20 @@ const MoviePage = () => {
         </div>
 
         {/* Cast Slider */}
+        <div className="my-8">
+          <h2 className="text-gray-800 font-bold text-2xl mb-4">
+            Cast and Crew
+          </h2>
+          <Slider {...settingCast}>
+            {cast.map((castData) => (
+              <Cast
+                image={castData.profile_path}
+                castName={castData.original_name}
+                role={castData.character}
+              />
+            ))}
+          </Slider>
+        </div>
 
         <div className="my-8">
           <hr />

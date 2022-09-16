@@ -3,7 +3,7 @@ import { MovieContext } from "../../context/Movie.context";
 import MovieInfo from "./MovieInfo.Component";
 
 const MovieHero = () => {
-  const { movie } = useContext(MovieContext);
+  const { movie, rentMovie, buyMovie } = useContext(MovieContext);
 
   const genres = movie.genres?.map(({ name }) => name).join(", ");
 
@@ -30,10 +30,16 @@ const MovieHero = () => {
             </div>
           </div>
           <div className="flex items-center gap-3 md:px-4 md:w-screen text-xl px-4">
-            <button className="bg-red-500 w-full py-3 text-white font-semibold rounded-lg">
+            <button
+              onClick={rentMovie}
+              className="bg-red-500 w-full py-3 text-white font-semibold rounded-lg"
+            >
               Rent ₹149
             </button>
-            <button className="bg-red-600 w-full py-3 text-white font-semibold rounded-lg">
+            <button
+              onClick={buyMovie}
+              className="bg-red-600 w-full py-3 text-white font-semibold rounded-lg"
+            >
               Buy ₹599
             </button>
           </div>
